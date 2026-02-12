@@ -1,0 +1,101 @@
+import React, { useState } from "react";
+</div>
+</nav>
+
+
+{/* HERO */}
+<section className="h-screen flex flex-col justify-center items-center text-center">
+<motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-6xl font-light">
+Mobilno pranje vozila
+</motion.h1>
+<p className="text-gray-400 mt-6 max-w-xl">
+Premium detailing na vašoj adresi. Bez čekanja. Bez odlaska.
+</p>
+</section>
+
+
+{/* PAKETI */}
+<section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 px-6 pb-24">
+{packages.map((p) => (
+<Card key={p.name} className="bg-neutral-900 border-neutral-800">
+<CardContent className="p-6 text-center">
+<h3 className="text-xl">{p.name}</h3>
+<p className="text-gray-400">{p.price}</p>
+<Button className="mt-4 w-full" onClick={() => setPackageType(p.name)}>
+Izaberi
+</Button>
+</CardContent>
+</Card>
+))}
+</section>
+
+
+{/* BOOKING */}
+<section id="booking" className="flex justify-center pb-24">
+<Card className="bg-neutral-900 border-neutral-800 w-full max-w-4xl">
+<CardContent className="p-8 grid md:grid-cols-2 gap-8">
+
+
+<Calendar mode="single" selected={date} onSelect={setDate} />
+
+
+<div className="space-y-4">
+<div className="grid grid-cols-2 gap-3">
+{times.map((t) => (
+<Button key={t} variant={selectedTime === t ? "default" : "secondary"} onClick={() => setSelectedTime(t)}>
+{t}
+</Button>
+))}
+</div>
+
+
+{/* ADRESA */}
+<input
+type="text"
+placeholder="Unesite adresu dolaska"
+value={address}
+onChange={(e) => setAddress(e.target.value)}
+className="w-full p-3 rounded-xl bg-neutral-800 border border-neutral-700 text-white"
+/>
+
+
+<Button className="w-full mt-2" onClick={sendRequest}>
+Pošalji zahtev
+</Button>
+</div>
+
+
+</CardContent>
+</Card>
+</section>
+
+
+{/* ADMIN PANEL */}
+{adminMode && (
+<section className="max-w-4xl mx-auto pb-24">
+<h2 className="text-3xl mb-6">Admin panel</h2>
+
+
+<Card className="bg-neutral-900 border-neutral-800">
+<CardContent className="p-6">
+<p>Primer zahteva:</p>
+<p className="text-gray-400">Premium detailing — 15.03. — 14:00 — Knez Mihailova 1</p>
+
+
+<div className="flex gap-3 mt-4">
+<Button onClick={confirmBooking}>Potvrdi</Button>
+<Button variant="destructive">Odbij</Button>
+</div>
+</CardContent>
+</Card>
+</section>
+)}
+
+
+{/* FOOTER */}
+<footer className="text-center text-gray-500 pb-10">
+© {new Date().getFullYear()} Mobilno pranje
+</footer>
+</div>
+);
+}
